@@ -1,6 +1,6 @@
 'use strict';
 // SQUAD 2033 v6 — 2D isometric tactics (JA2 x Ghost Recon). Plain canvas 2D.
-const VERSION='squad2033 v6.3';
+const VERSION='squad2033 v6.4';
 const cv=document.getElementById('c'),ctx=cv.getContext('2d');
 let W=384,H=854,DPR=1,TOP=0,BOT=60,US=1,DW=384,DH=854;
 const probe=document.createElement('div');probe.style.cssText='position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)';document.body.appendChild(probe);
@@ -17,8 +17,8 @@ const clamp=(v,a,b)=>v<a?a:v>b?b:v;const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y)
 
 // ---------- assets ----------
 const A={};let loadDone=0,loadTotal=0,loadErr=null;
-function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('image failed: '+src));i.src=src+'?v=6.3';});}
-async function loadAtlas(key,path,mask){loadTotal++;const [j,img]=await Promise.all([fetch(path+'.json?v=6.3').then(r=>{if(!r.ok)throw new Error('json failed: '+path);return r.json();}),loadImg(path+'.png')]);
+function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('image failed: '+src));i.src=src+'?v=6.4';});}
+async function loadAtlas(key,path,mask){loadTotal++;const [j,img]=await Promise.all([fetch(path+'.json?v=6.4').then(r=>{if(!r.ok)throw new Error('json failed: '+path);return r.json();}),loadImg(path+'.png')]);
  const a={fr:j.frames,meta:j.meta,img};if(mask)a.mask=await loadImg(path+'_mask.png');A[key]=a;loadDone++;}
 const RACES=['human','robot','grey'];
 const CLS_KEYS=['assault','heavy','sniper','scout','tech','leader','radio'];
@@ -169,7 +169,7 @@ function mkPlayer(rs,slot){const c=CL[rs.cls],r=RACE[rs.race];const u={side:'p',
  follow:true,wps:[],alive:true,down:false,bleed:0,stab:false,dead:false,marked:0,supp:0,stun:0,ow:false,bipod:false,moved:false,kills:0,face:Math.atan2(-1,-1)};return u;}
 function mkEnemy(type,x,y,grp,extra){const d=ENEMY[type];return Object.assign({side:'e',type,atlas:type,name:d.n,hp:d.hp,maxhp:d.hp,ap:0,maxap:d.ap,wk:d.wep,shield:d.shield||0,stance:'stand',x,y,tx:x,ty:y,post:{x,y},grp,aware:false,alive:true,down:false,
  marked:0,supp:0,stun:0,face:Math.atan2(1,1),freed:0,hostile:true,boss:!!d.boss},extra||{});}
-function setupMission(sel){seed=(Date.now()&0xffff)^0x5a5a;G={screen:'play',mode:'rt',side:'p',round:0,units:[],fx:[],floats:[],msgs:[],strikes:[],drones:[],sel:null,target:null,preview:null,pending:null,menu:null,busy:false,calm:0,camX:0,camY:0,Z:1,panT:0,map:false,mapSel:0,result:null,t:0,ringT:0,owFired:new Set()};
+function setupMission(sel){seed=(Date.now()&0xffff)^0x5a5a;G={screen:'play',mode:'tb',side:'p',round:0,units:[],fx:[],floats:[],msgs:[],strikes:[],drones:[],sel:null,target:null,preview:null,pending:null,menu:null,busy:false,calm:0,camX:0,camY:0,Z:1,panT:0,map:false,mapSel:0,result:null,t:0,ringT:0,owFired:new Set()};
  const s0=seed;seed=20330601;buildMap();seed=s0;
  const spawn=[[35,36],[36,35],[34,37],[37,34]];
  sel.forEach((rs,i)=>{const u=mkPlayer(rs,i);u.x=u.tx=spawn[i][0];u.y=u.ty=spawn[i][1];G.units.push(u);});
@@ -181,7 +181,7 @@ function setupMission(sel){seed=(Date.now()&0xffff)^0x5a5a;G={screen:'play',mode
  E('collab_trooper',26,22,3,{patrol:[{x:26,y:22},{x:21,y:27}]});
  E('sovereign',5,5,4);E('sovereign_guard',6,9,4);E('sovereign_guard',9,6,4);
  G.sel=G.units[0];G.camX=wpx(G.sel.x,G.sel.y);G.camY=wpy(G.sel.x,G.sel.y)-30;computeVis();
- msg('INSERTION. SCOUT THE AO — KILL THE SOVEREIGN (NORTH COMPOUND).','#8be04a');}
+ msg('INSERTION. SCOUT THE AO — KILL THE SOVEREIGN (NORTH COMPOUND).','#8be04a');G.mode='tb';G.round=0;beginPlayerTurn();}
 const players=()=>G.units.filter(u=>u.side==='p');
 const liveP=()=>G.units.filter(u=>u.side==='p'&&u.alive&&!u.down);
 const hostiles=()=>G.units.filter(u=>u.side==='e'&&u.alive&&u.hostile);
@@ -199,9 +199,9 @@ function computeVis(){M.vis.fill(0);const src=[];for(const u of liveP())src.push
   if(!s.wide&&d>2.2&&angDiff(Math.atan2(y-s.y,x-s.x),s.f)>1.4)continue;if(s.air||los(s.x,s.y,x,y)){M.vis[ix(x,y)]=1;M.seen[ix(x,y)]=1;}}}}
 function enemyVisible(e){if(e.side!=='e')return true;if(e.marked>0||G.flyover>0)return true;const k=ix(Math.round(e.tx),Math.round(e.ty));if(!M.vis[k])return false;
  if(!e.alive)return true;for(const d of G.drones)if(Math.hypot(d.x-e.x,d.y-e.y)<=5)return true;return liveP().some(p=>sees(p,e)||dist(p,e)<1.6);}
-function groupAlert(g,pos){for(const e of hostiles())if(e.grp===g&&!e.aware){e.aware=true;if(pos)e.lk={x:pos.x,y:pos.y};}}
+function groupAlert(g,pos){let n=0;for(const e of hostiles())if(e.grp===g&&!e.aware){e.aware=true;e.sus=null;e.lost=0;n++;if(pos)e.lk={x:pos.x,y:pos.y};}if(n&&G.screen==='play')msg('CONTACT — ENEMY GROUP ALERTED','#ff5a4a');}
 function noise(x,y,r,src){for(const e of hostiles()){const d=Math.hypot(e.x-x,e.y-y);if(d>r)continue;e.face=Math.atan2(y-e.y,x-e.x);
-  if(G.mode==='tb'){if(!e.aware){e.aware=true;e.lk={x:Math.round(x),y:Math.round(y)};}}else{e.sus={x:Math.round(x),y:Math.round(y),t:5};}}}
+  if(r>=8){if(!e.aware){groupAlert(e.grp,{x:Math.round(x),y:Math.round(y)});}}else if(!e.aware){e.sus={x:Math.round(x),y:Math.round(y),t:3};}}}
 
 // ---------- movement ----------
 const STI={stand:0,crouch:1,prone:2};
@@ -215,9 +215,8 @@ async function moveAlong(u,path){if(!path||!path.length)return;const tok=u.tok=(
   if(mode==='tb'){const c=stepCost(u,n);if(u.ap<c)break;u.ap-=c;u.moved=true;u.bipod=false;}else u.bipod=false;
   await stepTo(u,n);
   if(u.side==='p'){const r=stepNoise(u);if(r>0)noise(u.x,u.y,r,u);computeVis();
-   if(mode==='rt'){checkContact();if(G.mode!=='rt')break;}
-   else{for(const e of hostiles())if(!e.aware&&sees(e,u))groupAlert(e.grp,{x:u.tx,y:u.ty});const s=visibleHostiles().length;if(s>seen0){msg('NEW CONTACT — MOVE HALTED','#f0a030');break;}}}
-  else{await claymoreCheck(u);if(!u.alive)break;if(mode==='tb'){await overwatchCheck(u);if(!u.alive)break;}else{checkContact();if(G.mode!=='rt')break;}}}}
+   {for(const e of hostiles())if(!e.aware&&sees(e,u))groupAlert(e.grp,{x:u.tx,y:u.ty});const s=visibleHostiles().length;if(s>seen0){msg('NEW CONTACT — MOVE HALTED','#f0a030');break;}}}
+  else{await claymoreCheck(u);if(!u.alive)break;await overwatchCheck(u);if(!u.alive)break;}}}
  finally{u.moving=false;}}
 async function waitIdle(){let k=0;while(G.units.some(u=>u.mv)&&k++<200)await sleep(20);}
 function pathAdj(u,t,maxN){let best=null;const tx=Math.round(t.tx!==undefined?t.tx:t.x),ty=Math.round(t.ty!==undefined?t.ty:t.y);
@@ -298,7 +297,7 @@ const AB={
  drone:{n:'SCOUT DRONE',ap:4,tgt:'tile',rng:12,item:'drone',run:async(u,t)=>{G.drones.push({x:t.x,y:t.y,ttl:2});computeVis();float(u,'DRONE UP','#b070f0');}},
  rally:{n:'RALLY ORDER',ap:2,tgt:'self',can:u=>!u.rallied,run:async u=>{u.rallied=true;for(const p of liveP())if(p!==u&&dist(p,u)<=5){if(G.mode==='tb')p.ap+=3;float(p,'+3 AP','#e8c040');}}},
  smoke:{n:'SMOKE GRENADE',ap:4,tgt:'tile',rng:7,item:'smoke',run:async(u,t)=>{await throwAt(u,t);for(let i=-2;i<=2;i++)for(let j=-2;j<=2;j++)if(inb(t.x+i,t.y+j)&&Math.hypot(i,j)<=1.6)M.smoke[ix(t.x+i,t.y+j)]=3;computeVis();}},
- strike:{n:'AIRSTRIKE',ap:6,tgt:'tile',rng:40,item:'strike',cd:3,run:async(u,t)=>{G.strikes.push({x:t.x,y:t.y,t:G.mode==='tb'?1:5});noise(u.x,u.y,14,u);msg('STRIKE INBOUND — LANDS AFTER ENEMY TURN','#ff5a4a');}},
+ strike:{n:'AIRSTRIKE',ap:6,tgt:'tile',rng:40,item:'strike',cd:3,run:async(u,t)=>{G.strikes.push({x:t.x,y:t.y,t:1});noise(u.x,u.y,14,u);msg('STRIKE INBOUND — LANDS AFTER ENEMY TURN','#ff5a4a');}},
  supply:{n:'SUPPLY DROP',ap:5,tgt:'self',item:'supply',run:async u=>{noise(u.x,u.y,14,u);for(const p of liveP()){p.weps.forEach(w=>w.mags+=2);if(p.items.frag!==undefined)p.items.frag++;float(p,'+SUPPLY','#8be04a');}}},
  flyover:{n:'RECON FLYOVER',ap:4,tgt:'self',item:'flyover',run:async u=>{noise(u.x,u.y,14,u);G.flyover=2;for(const e of hostiles())e.marked=Math.max(e.marked,2);msg('FLYOVER — ALL ENEMIES MARKED','#60a0f0');}},
 };
@@ -306,7 +305,7 @@ function abState(u,id){const a=AB[id];const ap=val(a.ap,u);let ok=true,why='';if
  if(u.cd[id]>0){ok=false;why='CD '+u.cd[id];}if(G.mode==='tb'&&u.ap<ap){ok=false;why=why||'NO AP';}if(G.mode==='tb'&&G.side!=='p')ok=false;
  const uses=a.uses?a.uses(u):(a.item?u.items[a.item]:null);return{ok,why,ap,uses,n:val(a.n,u),tgt:val(a.tgt,u),rng:val(a.rng,u)};}
 async function useAbility(u,id,t){const a=AB[id];const s=abState(u,id);if(!s.ok)return false;G.busy=true;try{if(G.mode==='tb')u.ap-=s.ap;if(a.item)u.items[a.item]--;if(a.cd)u.cd[id]=a.cd;if(!['owlane'].includes(id))u.ow=false;await a.run(u,t);}finally{G.busy=false;}
- computeVis();if(G.mode==='rt')checkContact();return true;}
+ computeVis();return true;}
 // validate target for pending ability given tapped tile (x,y)
 function abTarget(u,id,x,y){const s=abState(u,id);const unitAt=G.units.find(o=>o.alive&&Math.round(o.tx)===x&&Math.round(o.ty)===y);const d=Math.hypot(x-u.tx,y-u.ty);
  if(s.rng&&d>s.rng+.01)return{err:'OUT OF RANGE'};
@@ -320,13 +319,6 @@ function abTarget(u,id,x,y){const s=abState(u,id);const unitAt=G.units.find(o=>o
  return{err:'?'};}
 
 // ---------- turn flow ----------
-function checkContact(){if(G.mode!=='rt'||G.screen!=='play')return;const P=liveP(),E=hostiles();const pS=new Set(),eS=new Set();
- for(const e of E)for(const p of P){if(sees(p,e))pS.add(e);if(sees(e,p))eS.add(e);}
- if(!pS.size&&!eS.size)return;const enemyFirst=eS.size>0&&pS.size===0;
- for(const e of [...pS,...eS]){const p=P.slice().sort((a,b)=>dist(a,e)-dist(b,e))[0];groupAlert(e.grp,{x:p.tx,y:p.ty});}startTB(!enemyFirst);}
-async function startTB(playerFirst){G.mode='tb';G.busy=true;for(const u of G.units)u.tok=(u.tok||0)+1;await waitIdle();G.round=0;G.calm=0;G.preview=null;G.target=null;G.pending=null;G.menu=null;G.map=false;computeVis();
- G.banner={s:playerFirst?'CONTACT — YOU HAVE THE INITIATIVE':'SPOTTED — ENEMY HAS INITIATIVE',c:playerFirst?'#8be04a':'#ff5a4a',t:0};msg(G.banner.s,G.banner.c);
- if(playerFirst)beginPlayerTurn();else{for(const p of players())p.ap=0;await enemyTurn();}}
 function tickRound(){for(let k=0;k<N*N;k++)if(M.smoke[k]>0)M.smoke[k]--;for(const u of G.units){if(u.marked>0)u.marked--;}G.drones=G.drones.filter(d=>--d.ttl>0);if(G.flyover>0)G.flyover--;
  for(const p of players()){for(const k in p.cd)if(p.cd[k]>0)p.cd[k]--;if(p.alive&&p.down&&!p.stab){p.bleed--;if(p.bleed<=0)kill(p);else float(p,'BLEEDING '+p.bleed,'#ff5a4a');}}computeVis();}
 function beginPlayerTurn(){if(G.screen!=='play')return;G.side='p';G.round++;tickRound();if(checkEnd())return;
@@ -337,13 +329,20 @@ async function endPlayerTurn(){if(G.busy||G.mode!=='tb'||G.side!=='p')return;G.b
  await enemyTurn();}
 async function enemyTurn(){if(G.screen!=='play')return;G.side='e';G.banner={s:'ENEMY TURN',c:'#ff5a4a',t:0};
  for(const e of hostiles()){e.ap=e.maxap-(e.supp?4:0);if(e.stun){e.ap=0;e.stun=0;}e.supp=0;if(!e.aware&&liveP().some(p=>sees(e,p)))groupAlert(e.grp,null);}
+ for(const e of hostiles().filter(e=>!e.aware)){if(G.screen!=='play')return;await idleAct(e);}
  const act=hostiles().filter(e=>e.aware).sort((a,b)=>Math.min(...liveP().map(p=>dist(p,a)))-Math.min(...liveP().map(p=>dist(p,b))));
  for(const e of act){if(G.screen!=='play')return;if(!e.alive)continue;G.focus=e;await enemyAct(e);}
  G.focus=null;for(const s of G.strikes.slice())if(--s.t<=0){G.strikes.splice(G.strikes.indexOf(s),1);msg('STRIKE IMPACT','#ff5a4a');await explode(s.x,s.y,2.5,4,null);}
  if(G.screen!=='play')return;
- const contact=hostiles().some(e=>liveP().some(p=>sees(e,p)||sees(p,e)))||G.strikes.length;G.calm=contact?0:G.calm+1;
- if(G.calm>=2){G.mode='rt';G.side='p';for(const e of hostiles()){if(e.aware){e.sus=e.lk?{x:e.lk.x,y:e.lk.y,t:6}:null;}e.aware=false;}for(const p of players()){p.ow=false;p.owLane=null;}G.busy=false;G.banner={s:'NO CONTACT — REAL-TIME',c:'#8be04a',t:0};msg('NO CONTACT — BACK TO REAL-TIME','#8be04a');computeVis();return;}
+ for(const e of hostiles()){if(!e.aware)continue;const seen=liveP().some(p=>sees(e,p));e.lost=seen?0:(e.lost||0)+1;if(e.lost>=3){e.aware=false;e.sus=e.lk?{x:e.lk.x,y:e.lk.y,t:3}:null;}}
  beginPlayerTurn();}
+async function idleAct(e){let g=null;
+ if(e.sus){if(Math.hypot(e.tx-e.sus.x,e.ty-e.sus.y)<1.6){e.face+=1.3;if(--e.sus.t<=0)e.sus=null;return;}g=e.sus;}
+ else if(e.patrol){e.pi=e.pi||0;g=e.patrol[e.pi];if(Math.hypot(e.tx-g.x,e.ty-g.y)<1.1){e.pi=1-e.pi;g=e.patrol[e.pi];}}
+ else if(Math.hypot(e.tx-e.post.x,e.ty-e.post.y)>.5)g=e.post;
+ else{if(e.face0===undefined)e.face0=e.face;e.face=e.face0+Math.sin(G.round*1.3+e.post.x)*.8;}
+ if(g){const p=findPath(e,g.x,g.y)||pathAdj(e,g);if(p&&p.length){const vis=enemyVisible(e);if(vis)G.focus=e;await moveAlong(e,p.slice(0,e.sus?5:3));}}
+ if(e.alive&&liveP().some(p=>sees(e,p)))groupAlert(e.grp,null);}
 function pickTarget(e,list){if(!list.length)return null;const r=list.find(p=>p.cls==='radio');if(r)return r;return list.slice().sort((a,b)=>dist(a,e)-dist(b,e))[0];}
 async function enemyAct(e){let loops=0;const w=WEP[e.wk];
  while(e.alive&&e.hostile&&e.ap>0&&loops++<10&&G.screen==='play'){const P=liveP();if(!P.length)return;
@@ -363,26 +362,6 @@ async function endMission(win){if(G.screen==='end')return;G.screen='end';G.busy=
   else if(u.down){rs.status='wounded';rs.sitOut=1;res.wounded.push(rs.name);}else res.ok.push(rs.name);}
  R.roster=R.roster.filter(r=>r.status!=='dead');if(win)R.wins++;else R.losses++;R.mission++;saveRoster();G.result=res;}
 
-// ---------- real-time ----------
-function rtUpdate(dt){G.ctT=(G.ctT||0)-dt;G.rtT=(G.rtT||0)+dt;G.flT=(G.flT||0)-dt;
- for(const e of hostiles()){if(e.moving)continue;if(e.face0===undefined)e.face0=e.face;e.rt=(e.rt||0)-dt;
-  if(!e.sus&&!e.patrol&&Math.hypot(e.tx-e.post.x,e.ty-e.post.y)<.5){e.face=e.face0+Math.sin(G.t*.45+e.post.x)*.8;continue;}
-  if(e.rt>0)continue;
-  if(e.sus){if(Math.hypot(e.tx-e.sus.x,e.ty-e.sus.y)<1.6){e.sus.t--;e.rt=1;e.face+=1.3;if(e.sus.t<=0)e.sus=null;continue;}const p=findPath(e,e.sus.x,e.sus.y)||pathAdj(e,e.sus);if(p&&p.length)moveAlong(e,p.slice(0,8));else e.sus=null;e.rt=.3;continue;}
-  if(e.patrol){e.pi=e.pi||0;const g=e.patrol[e.pi];if(Math.hypot(e.tx-g.x,e.ty-g.y)<1.1){e.pi=1-e.pi;e.rt=2.5;continue;}const p=findPath(e,g.x,g.y)||pathAdj(e,g);if(p&&p.length)moveAlong(e,p.slice(0,6));else{e.pi=1-e.pi;e.rt=1;}continue;}
-  const p=findPath(e,e.post.x,e.post.y);if(p)moveAlong(e,p);e.rt=1;}
- const sel=G.sel;
- if(G.flT<=0&&sel){G.flT=.4;for(const p of liveP()){if(p===sel||p.moving)continue;
-   if(p.wpGo&&p.wps.length){const g=p.wps[0];if(Math.hypot(p.tx-g.x,p.ty-g.y)<.5){p.wps.shift();if(!p.wps.length)p.wpGo=false;continue;}const path=findPath(p,g.x,g.y)||pathAdj(p,g);if(!path||!path.length){p.wps.shift();continue;}moveAlong(p,path);continue;}
-   if(!p.follow)continue;p.stance=sel.stance;const lead=sel.dest&&sel.moving?sel.dest:{x:sel.tx,y:sel.ty};if(Math.hypot(p.tx-lead.x,p.ty-lead.y)<=2.6)continue;
-   let best=null;for(let r=1;r<=3&&!best;r++)for(let dx=-r;dx<=r;dx++)for(let dy=-r;dy<=r;dy++){const x=lead.x+dx,y=lead.y+dy;if(!passable(x,y)||occupied(x,y,p)||(sel.dest&&x===sel.dest.x&&y===sel.dest.y))continue;if(liveP().some(o=>o!==p&&o.dest&&o.moving&&o.dest.x===x&&o.dest.y===y))continue;const d=Math.hypot(x-p.tx,y-p.ty);if(!best||d<best.d)best={x,y,d};}
-   if(best){const path=findPath(p,best.x,best.y);if(path){p.dest={x:best.x,y:best.y};moveAlong(p,path);}}}
-  if(sel.wpGo&&sel.wps.length&&!sel.moving){const g=sel.wps[0];if(Math.hypot(sel.tx-g.x,sel.ty-g.y)<.5){sel.wps.shift();if(!sel.wps.length)sel.wpGo=false;}else{const path=findPath(sel,g.x,g.y)||pathAdj(sel,g);if(!path||!path.length)sel.wps.shift();else{sel.dest=g;moveAlong(sel,path);}}}}
- if(G.ctT<=0){G.ctT=.15;checkContact();}
- for(const s of G.strikes.slice()){s.t-=dt;if(s.t<=0){G.strikes.splice(G.strikes.indexOf(s),1);explode(s.x,s.y,2.5,4,null).then(()=>checkContact());}}
- if(G.rtT>=10){G.rtT=0;tickRound();}}
-
-
 // reachable tiles for turn-based (same step rules + AP costs as moveAlong)
 function reachMap(u){const sx=Math.round(u.tx),sy=Math.round(u.ty);const cost=new Float32Array(N*N).fill(1e9),from=new Int32Array(N*N).fill(-1);const occ=new Set();for(const o of G.units)if(o!==u&&o.alive)occ.add(ix(Math.round(o.tx),Math.round(o.ty)));
  const base=CL[u.cls].move[STI[u.stance]];cost[ix(sx,sy)]=0;const open=[ix(sx,sy)];
@@ -400,7 +379,7 @@ function update(dt){if(G.screen!=='play'&&G.screen!=='ending')return;G.t+=dt;
  for(const u of G.units){if(u.mv){const m=u.mv;m.t+=dt*speedOf(u)/SPD;const f=Math.min(1,m.t/m.d);u.x=m.x0+(m.x1-m.x0)*f;u.y=m.y0+(m.y1-m.y0)*f;if(f>=1){u.mv=null;m.res();}}
   if(u.anim){u.anim.t+=dt;const ai=animInfo(u,u.anim.n);if(!ai||u.anim.t*ai.fps>=ai.frames+.5)u.anim=null;}if(u.down)u.downT=(u.downT||0)+dt;else u.downT=0;}
  G.fx=G.fx.filter(f=>(f.t+=dt)<f.T);G.floats=G.floats.filter(f=>(f.t+=dt)<1.3);for(const m of G.msgs)m.t+=dt;G.msgs=G.msgs.filter(m=>m.t<7);if(G.banner&&(G.banner.t+=dt)>2.2)G.banner=null;
- if(G.mode==='rt'&&G.screen==='play'&&!G.busy)rtUpdate(dt);
+ 
  G.panT-=dt;const f=G.focus&&enemyVisible(G.focus)?G.focus:G.sel;if(f&&G.panT<=0){const tx=wpx(f.x,f.y),ty=wpy(f.x,f.y)-30;const k=Math.min(1,dt*4);G.camX+=(tx-G.camX)*k;G.camY+=(ty-G.camY)*k;}}
 
 // ---------- draw ----------
@@ -420,7 +399,7 @@ function drawUnit(u){const p={x:wpx(u.x,u.y),y:wpy(u.x,u.y)};const hud=A.hud;
  const f=unitFrame(u);const img=u.side==='p'?teamAtlasImg(f.a,u.col):null;if(u.side==='e'&&!u.alive)ctx.globalAlpha=.85;drawFrame(f.a,f.name,p.x,p.y,f.flip,img);ctx.globalAlpha=1;
  if(u.alive&&u.side==='e'&&u.hostile){const anc=(f.a.meta.anchors[f.name]||{}).head||[0,-60];const hx=p.x+(f.flip?-anc[0]:anc[0]),hy=p.y+anc[1]-14;
   for(let i=0;i<u.maxhp;i++){ctx.fillStyle=i<u.hp?'#ff5a4a':'#3a2a2a';ctx.fillRect(hx-u.maxhp*2+i*4,hy,3,3);}for(let i=0;i<u.shield;i++){ctx.fillStyle='#7fd8ff';ctx.fillRect(hx-u.shield*2+i*4,hy-5,3,3);}
-  if(u.marked>0){ctx.fillStyle='#e0703a';ctx.fillRect(hx-2,hy-12,5,5);}if(!u.aware&&!u.sus){}else if(G.mode==='rt'&&u.sus){text('?',hx,hy-24,'#f0a030',14,'c');}}
+  if(u.marked>0){ctx.fillStyle='#e0703a';ctx.fillRect(hx-2,hy-12,5,5);}if(!u.aware&&!u.sus){}else if(u.sus){text('?',hx,hy-24,'#f0a030',14,'c');}}
  if(u.side==='p'&&u.down&&u.alive){text(u.stab?'STAB':'BLEED '+u.bleed,p.x,p.y-30,u.stab?'#8be04a':'#ff5a4a',11,'c');}
  if(u.side==='p'&&u.ow&&!u.down)text('OW',p.x,p.y-82,'#e8c040',11,'c');}
 function drawWorld(){const Z=G.Z;ctx.setTransform(DPR*Z,0,0,DPR*Z,DPR*(vcx()-G.camX*Z),DPR*(vcy()-G.camY*Z));ctx.imageSmoothingEnabled=false;
@@ -431,11 +410,11 @@ function drawWorld(){const Z=G.Z;ctx.setTransform(DPR*Z,0,0,DPR*Z,DPR*(vcx()-G.c
  if(G.sel&&G.sel.alive&&!G.sel.down&&G.mode==='tb'&&G.side==='p'&&!G.busy&&!G.pending){const s=G.sel,r=getReach(s),keep=s.ap-snapCost(s);ctx.lineWidth=1;
   for(let x=0;x<N;x++)for(let y=0;y<N;y++){if(!on(x,y))continue;const c=r.cost[ix(x,y)];if(c>=1e9||(x===r.sx&&y===r.sy))continue;const ok=Math.round(c)<=keep;
    diamond(wpx(x,y),wpy(x,y),.92);ctx.fillStyle=ok?'rgba(63,200,224,.30)':'rgba(232,192,64,.20)';ctx.fill();ctx.strokeStyle=ok?'rgba(120,230,255,.55)':'rgba(232,192,64,.35)';ctx.stroke();}}
- if(G.mode==='rt'&&G.sel&&G.sel.moving&&G.sel.dest){const d=G.sel.dest;diamond(wpx(d.x,d.y),wpy(d.x,d.y),.92);ctx.fillStyle='rgba(230,226,212,.22)';ctx.fill();ctx.strokeStyle='rgba(230,226,212,.6)';ctx.lineWidth=1;ctx.stroke();}
+
  // planned path / preview
  const hud=A.hud;if(G.preview){for(const n of G.preview.path)drawFrame(hud,'move/dot',wpx(n.x,n.y),wpy(n.x,n.y));const l=G.preview.path[G.preview.path.length-1];drawFrame(hud,'move/target_chevron',wpx(l.x,l.y),wpy(l.x,l.y));
   text(G.preview.cost+' AP',wpx(l.x,l.y),wpy(l.x,l.y)-30,G.preview.cost>G.sel.ap?'#ff5a4a':'#e8c040',14,'c');}
- if(G.mode==='rt')for(const p of liveP())if(p.wps.length){p.wps.forEach((w,i)=>drawFrame(hud,'waypoint/'+(i+1),wpx(w.x,w.y),wpy(w.x,w.y),false,tintedImage(hud.img,p.col)));}
+
  for(const s of G.strikes){ctx.strokeStyle='rgba(255,90,74,'+(.5+.5*Math.sin(G.t*10))+')';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(wpx(s.x,s.y),wpy(s.x,s.y),2.5*45,2.5*22,0,0,7);ctx.stroke();}
  // threat ring under selected
  if(G.sel&&G.sel.alive&&!G.sel.down){const s=G.sel,px=wpx(s.x,s.y),py=wpy(s.x,s.y);drawFrame(hud,'threat_ring',px,py,false,null,1.6);const grey=liveP().some(p=>p.race==='grey');const lit=new Set();
@@ -499,7 +478,7 @@ function drawHUD(){const top=TOP/US+4,bot=DH-BOT/US;const tb=G.mode==='tb';
  else if(tb&&G.side!=='p')row([['ENEMY TURN…',null,{dis:1}]]);
  else if(tb){const busy=G.busy||!u;if(G.target&&G.target.alive&&u)row([['SNAP '+snapCost(u),()=>shootCmd(false),{dis:busy||u.ap<snapCost(u),col:'#ff5a4a',id:'SNAP'}],['AIMED '+aimCost(u),()=>shootCmd(true),{dis:busy||u.ap<aimCost(u),col:'#ff5a4a',id:'AIMED'}],['ABILITY',()=>{G.menu=!G.menu;},{col:'#b070f0',id:'ABILITY'}],['CANCEL',()=>{G.target=null;},{id:'CANCEL'}],['END TURN',endTurnCmd,{gold:1,col:'#e8c040',dis:G.busy,id:'END TURN'}]]);
   else row([['STANCE',stanceCmd,{dis:busy,id:'STANCE'}],['RELOAD '+(u?CL[u.cls].reload:''),reloadCmd,{dis:busy,id:'RELOAD'}],['ABILITY',()=>{G.menu=!G.menu;},{col:'#b070f0',dis:busy,id:'ABILITY'}],['OVERWATCH',owCmd,{dis:busy,on:u&&u.ow,id:'OVERWATCH'}],['END TURN',endTurnCmd,{gold:1,col:'#e8c040',dis:G.busy,id:'END TURN'}]]);}
- else row([['STANCE',stanceCmd,{id:'STANCE'}],[u&&u.follow?'FOLLOW':'HOLD',()=>{if(u)u.follow=!u.follow;},{on:u&&!u.follow,id:'FOLLOW'}],['ABILITY',()=>{G.menu=!G.menu;},{col:'#b070f0',id:'ABILITY'}],['RELOAD',reloadCmd,{id:'RELOAD'}]]);}
+}
 function doAsync(f){Promise.resolve().then(f).catch(e=>console.error(e));}
 function stanceCmd(){const u=G.sel;if(!u||G.busy)return;const nx={stand:'crouch',crouch:'prone',prone:'stand'}[u.stance];if(G.mode==='tb'){if(u.ap<2){msg('NO AP');return;}u.ap-=2;}u.stance=nx;u.bipod=false;computeVis();if(G.mode==='tb'&&G.preview)G.preview=null;}
 function reloadCmd(){const u=G.sel;if(!u||G.busy)return;const wi=u.weps[u.w];const c=CL[u.cls].reload;if(wi.mags<=0){msg('NO MAGS LEFT','#ff5a4a');return;}if(wi.ammo>=WEP[wi.k].mag){msg('MAG FULL');return;}if(G.mode==='tb'){if(u.ap<c){msg('NO AP');return;}u.ap-=c;}wi.mags--;wi.ammo=WEP[wi.k].mag;float(u,'RELOADED','#e6e2d4');}
@@ -507,7 +486,7 @@ function owCmd(){const u=G.sel;if(!u||G.busy)return;if(u.ap<snapCost(u)){msg('NE
 function endTurnCmd(){doAsync(endPlayerTurn);}
 function shootCmd(aimed){const u=G.sel,t=G.target;if(!u||!t||G.busy)return;doAsync(async()=>{G.busy=true;u.ow=false;try{await attack(u,t,aimed);}finally{G.busy=false;}if(!t.alive)G.target=null;});}
 function drawMap(y0,bot){const avail=bot-y0-44;const c=Math.floor(Math.min(DW-12,avail-34)/N);const ox=Math.round((DW-c*N)/2),oy=y0+30;panel(ox-4,y0,c*N+8,c*N+38,true);
- const P=players();P.forEach((u,i)=>btn(ox+i*((c*N)/4),y0+3,c*N/4-2,24,CL[u.cls].n.slice(0,8),()=>{G.mapSel=i;},{on:G.mapSel===i,col:u.col,id:'tab'+i}));
+ const P=players();if(0)P.forEach((u,i)=>btn(ox+i*((c*N)/4),y0+3,c*N/4-2,24,CL[u.cls].n.slice(0,8),()=>{G.mapSel=i;},{on:G.mapSel===i,col:u.col,id:'tab'+i}));
  const FC=['#3d5a2a','#6a5434','#a08a5a','#5a5a58','#4a4030','#3a4a38'];
  for(let x=0;x<N;x++)for(let y=0;y<N;y++){const k=ix(x,y);ctx.fillStyle=FC[M.floor[k]];ctx.fillRect(ox+x*c,oy+y*c,c,c);if(!M.seen[k]){ctx.fillStyle='rgba(0,0,0,.45)';ctx.fillRect(ox+x*c,oy+y*c,c,c);}
   if(M.prop[k]){ctx.fillStyle=PROPS[M.prop[k].k].los?'#222':'#8a7a5a';ctx.fillRect(ox+x*c+1,oy+y*c+1,c-2,c-2);}
@@ -516,11 +495,8 @@ function drawMap(y0,bot){const avail=bot-y0-44;const c=Math.floor(Math.min(DW-12
  for(const u of G.units){if(!u.alive&&u.side==='e')continue;if(u.side==='e'&&!enemyVisible(u)&&!u.freed)continue;ctx.fillStyle=u.side==='p'?(u.down?'#555':u.col):u.freed?'#8be04a':u.boss?'#e8c040':'#ff3030';ctx.beginPath();ctx.arc(ox+u.x*c+c/2,oy+u.y*c+c/2,u.boss?c*.8:c*.55,0,7);ctx.fill();}
  P.forEach((u,i)=>{if(!u.wps.length)return;ctx.strokeStyle=u.col;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(ox+u.x*c+c/2,oy+u.y*c+c/2);for(const w of u.wps)ctx.lineTo(ox+w.x*c+c/2,oy+w.y*c+c/2);ctx.stroke();
   u.wps.forEach((w,j)=>drawFrame(A.hud,'waypoint/'+(j+1),ox+w.x*c+c/2,oy+w.y*c+c/2,false,tintedImage(A.hud.img,u.col)));});
- BTN.push({x:ox,y:oy,w:c*N,h:c*N,id:'MAPGRID',fn:(px,py)=>{const x=Math.floor((px-ox)/c),y=Math.floor((py-oy)/c);const u=P[G.mapSel];if(!u||!u.alive||u.down||!passable(x,y))return;if(u.wps.length<9)u.wps.push({x,y});}});
- const u=P[G.mapSel];const by=bot-34,w=(DW-8-12)/4;
- btn(4,by,w,30,'CLEAR',()=>{if(u){u.wps=[];u.wpGo=false;}},{id:'CLEAR'});btn(8+w,by,w,30,u&&u.follow?'FOLLOW':'HOLD',()=>{if(u)u.follow=!u.follow;},{id:'MFOLLOW',on:u&&!u.follow});
- btn(12+2*w,by,w,30,'GO',()=>{if(G.mode==='tb'){msg('WAYPOINTS RUN IN REAL-TIME');}for(const p of P)if(p.wps.length)p.wpGo=true;G.map=false;},{gold:1,col:'#8be04a',id:'GO'});btn(16+3*w,by,w,30,'CLOSE',()=>{G.map=false;},{id:'CLOSE'});
- text('TAP GRID: WAYPOINTS FOR '+(u?CL[u.cls].n:''),DW/2,oy+c*N+2,'#e6e2d4',11,'c');}
+ btn(DW/2-60,bot-34,120,30,'CLOSE',()=>{G.map=false;},{id:'CLOSE'});
+ text('COMMAND MAP · VIEW ONLY',DW/2,oy+c*N+2,'#e6e2d4',11,'c');}
 
 // ---------- squad select / end ----------
 let PICK=[],resetArm=0;
@@ -569,13 +545,13 @@ function worldTap(px,py){const u=G.sel;const t=s2tile(px,py);const hit=unitAtScr
  if(hit&&hit.side==='p'){if(!hit.down){G.sel=hit;G.target=null;G.preview=null;}else msg(hit.name+(hit.stab?' IS STABILIZED':' IS BLEEDING — TECH: STABILIZE'),'#ff5a4a');return;}
  if(hit&&hit.side==='e'&&hit.hostile&&G.mode==='tb'&&u){if(!canShoot(u,hit)){msg('NO LINE OF FIRE','#f0a030');return;}G.target=hit;G.preview=null;return;}
  if(!u||!u.alive||u.down||!inb(t.x,t.y))return;
- if(G.mode==='rt'){const p=findPath(u,t.x,t.y);if(!p){msg("CAN'T MOVE THERE");return;}u.wps=[];u.wpGo=false;u.dest={x:t.x,y:t.y};moveAlong(u,p);return;}
+
  G.target=null;if(G.preview&&G.preview.x===t.x&&G.preview.y===t.y){const pv=G.preview;G.preview=null;doAsync(async()=>{G.busy=true;u.ow=false;try{await moveAlong(u,pv.path);}finally{G.busy=false;}});return;}
  const p=reachPath(getReach(u),t.x,t.y)||findPath(u,t.x,t.y);if(!p){msg("CAN'T MOVE THERE");G.preview=null;return;}let cost=0,cx=u.tx,cy=u.ty;for(const n of p){const e=edge(cx,cy,n.x,n.y);cost+=CL[u.cls].move[STI[u.stance]]+(e&&e.st==='door_closed'?2:0);cx=n.x;cy=n.y;}
  G.preview={x:t.x,y:t.y,path:p,cost};}
 
 // ---------- boot / loop ----------
-let last=0;function frame(ts){const dt=Math.min(.05,((ts-last)/1000)||0);last=ts;update(dt);draw();requestAnimationFrame(frame);}
+let last=0;function frame(ts){const dt=Math.min(.05,((ts-last)/1000)||0);last=ts;requestAnimationFrame(frame);try{update(dt);draw();}catch(e){console.error("frame",e&&e.stack);}}
 async function boot(){G={screen:'load',units:[],fx:[],floats:[],msgs:[]};loadDone=0;loadTotal=0;try{await loadAll();}catch(e){loadErr=e.message;console.warn(e);return;}
  R=loadRoster();PICK=R.roster.filter(r=>r.status==='ok').slice(0,4).map(r=>r.id);G={screen:'select',units:[],fx:[],floats:[],msgs:[]};}
 requestAnimationFrame(frame);boot();
@@ -584,4 +560,4 @@ window.SQ={get G(){return G;},get R(){return R;},get BTN(){return BTN;},US:()=>U
  btn(id){const b=BTN.find(b=>b.id===id||b.id.startsWith(id));return b?{x:(b.x+b.w/2)*US,y:(b.y+b.h/2)*US}:null;},
  tile(x,y){return w2s(x,y);},unit(u){const s=w2s(u.x,u.y);return{x:s.x,y:s.y-26*G.Z};},
  setSpeed(s){SPD=s;},force(p,e){FORCE.p=p;FORCE.e=e;},sleep};
-SQ.api={getReach,startTB,abTarget,damage,findPath,pathAdj,moveAlong,attack,endPlayerTurn,liveP,hostiles,setupMission,useAbility,canShoot,sees,enemyVisible,reload:reloadCmd,dist};
+SQ.api={getReach,abTarget,damage,findPath,pathAdj,moveAlong,attack,endPlayerTurn,liveP,hostiles,setupMission,useAbility,canShoot,sees,enemyVisible,reload:reloadCmd,dist};
