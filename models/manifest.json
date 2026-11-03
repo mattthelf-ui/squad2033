@@ -1,0 +1,1017 @@
+[
+ {
+  "id": "hero_human_assault",
+  "cat": "hero",
+  "tris": 2748,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR"
+   ]
+  },
+  "file": "heroes/hero_human_assault.glb",
+  "kb": 321.9
+ },
+ {
+  "id": "hero_human_heavy",
+  "cat": "hero",
+  "tris": 2988,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR"
+   ]
+  },
+  "file": "heroes/hero_human_heavy.glb",
+  "kb": 347.2
+ },
+ {
+  "id": "hero_human_recon",
+  "cat": "hero",
+  "tris": 3058,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "cape"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "cape"
+   ]
+  },
+  "file": "heroes/hero_human_recon.glb",
+  "kb": 358.7
+ },
+ {
+  "id": "hero_human_tech",
+  "cat": "hero",
+  "tris": 3586,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "drone"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "drone"
+   ]
+  },
+  "file": "heroes/hero_human_tech.glb",
+  "kb": 416.2
+ },
+ {
+  "id": "hero_robot_assault",
+  "cat": "hero",
+  "tris": 3120,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR"
+   ]
+  },
+  "file": "heroes/hero_robot_assault.glb",
+  "kb": 357.5
+ },
+ {
+  "id": "hero_robot_heavy",
+  "cat": "hero",
+  "tris": 3296,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR"
+   ]
+  },
+  "file": "heroes/hero_robot_heavy.glb",
+  "kb": 376.3
+ },
+ {
+  "id": "hero_robot_recon",
+  "cat": "hero",
+  "tris": 3122,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "cape"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "cape"
+   ]
+  },
+  "file": "heroes/hero_robot_recon.glb",
+  "kb": 363.6
+ },
+ {
+  "id": "hero_robot_tech",
+  "cat": "hero",
+  "tris": 3556,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "drone"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "drone"
+   ]
+  },
+  "file": "heroes/hero_robot_tech.glb",
+  "kb": 411.3
+ },
+ {
+  "id": "hero_grey_assault",
+  "cat": "hero",
+  "tris": 2892,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR"
+   ]
+  },
+  "file": "heroes/hero_grey_assault.glb",
+  "kb": 335.1
+ },
+ {
+  "id": "hero_grey_heavy",
+  "cat": "hero",
+  "tris": 3132,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR"
+   ]
+  },
+  "file": "heroes/hero_grey_heavy.glb",
+  "kb": 360.4
+ },
+ {
+  "id": "hero_grey_recon",
+  "cat": "hero",
+  "tris": 2894,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "cape"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "cape"
+   ]
+  },
+  "file": "heroes/hero_grey_recon.glb",
+  "kb": 340.6
+ },
+ {
+  "id": "hero_grey_tech",
+  "cat": "hero",
+  "tris": 3328,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "drone"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "team": true,
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "drone"
+   ]
+  },
+  "file": "heroes/hero_grey_tech.glb",
+  "kb": 388.9
+ },
+ {
+  "id": "enemy_nordic_mage",
+  "cat": "enemy",
+  "tris": 3402,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "cape"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "cape"
+   ]
+  },
+  "file": "enemies/enemy_nordic_mage.glb",
+  "kb": 388
+ },
+ {
+  "id": "enemy_nordic_guard",
+  "cat": "enemy",
+  "tris": 3116,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "cape"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "cape"
+   ]
+  },
+  "file": "enemies/enemy_nordic_guard.glb",
+  "kb": 357.3
+ },
+ {
+  "id": "enemy_reptile_brute",
+  "cat": "enemy",
+  "tris": 2482,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR"
+   ]
+  },
+  "file": "enemies/enemy_reptile_brute.glb",
+  "kb": 291
+ },
+ {
+  "id": "enemy_reptile_trooper",
+  "cat": "enemy",
+  "tris": 3082,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR"
+   ]
+  },
+  "file": "enemies/enemy_reptile_trooper.glb",
+  "kb": 352.5
+ },
+ {
+  "id": "enemy_collab_officer",
+  "cat": "enemy",
+  "tris": 3222,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "cape"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "cape"
+   ]
+  },
+  "file": "enemies/enemy_collab_officer.glb",
+  "kb": 367.3
+ },
+ {
+  "id": "enemy_collab_tech",
+  "cat": "enemy",
+  "tris": 3330,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "cape"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "cape"
+   ]
+  },
+  "file": "enemies/enemy_collab_tech.glb",
+  "kb": 379.8
+ },
+ {
+  "id": "boss_sovereign",
+  "cat": "boss",
+  "tris": 6904,
+  "bones": [
+   "root",
+   "throne",
+   "body",
+   "head",
+   "armL",
+   "armR",
+   "rings",
+   "halo"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "rig": [
+    "root",
+    "throne",
+    "body",
+    "head",
+    "armL",
+    "armR",
+    "rings",
+    "halo"
+   ]
+  },
+  "file": "boss/boss_sovereign.glb",
+  "kb": 750.1
+ },
+ {
+  "id": "boss_guard",
+  "cat": "boss",
+  "tris": 3054,
+  "bones": [
+   "root",
+   "hips",
+   "torso",
+   "head",
+   "armL",
+   "armR",
+   "legL",
+   "legR",
+   "pedestal"
+  ],
+  "anims": [
+   "idle",
+   "run",
+   "attack",
+   "ability",
+   "hit",
+   "down"
+  ],
+  "meta": {
+   "rig": [
+    "root",
+    "hips",
+    "torso",
+    "head",
+    "armL",
+    "armR",
+    "legL",
+    "legR",
+    "pedestal"
+   ],
+   "note": "feet stand on a floating disc; lift the whole model ~0.4 m in game"
+  },
+  "file": "boss/boss_guard.glb",
+  "kb": 350.2
+ },
+ {
+  "id": "cover_wall_half",
+  "cat": "env",
+  "tris": 156,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/cover_wall_half.glb",
+  "kb": 17.7
+ },
+ {
+  "id": "cover_wall_full",
+  "cat": "env",
+  "tris": 156,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/cover_wall_full.glb",
+  "kb": 17.7
+ },
+ {
+  "id": "ridge_1x1",
+  "cat": "env",
+  "tris": 144,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/ridge_1x1.glb",
+  "kb": 16.5
+ },
+ {
+  "id": "ridge_2x1",
+  "cat": "env",
+  "tris": 184,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/ridge_2x1.glb",
+  "kb": 20.7
+ },
+ {
+  "id": "ridge_ramp",
+  "cat": "env",
+  "tris": 20,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/ridge_ramp.glb",
+  "kb": 3.3
+ },
+ {
+  "id": "sandbags",
+  "cat": "env",
+  "tris": 880,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/sandbags.glb",
+  "kb": 94.1
+ },
+ {
+  "id": "barricade",
+  "cat": "env",
+  "tris": 96,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/barricade.glb",
+  "kb": 11.4
+ },
+ {
+  "id": "crate_green",
+  "cat": "env",
+  "tris": 156,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/crate_green.glb",
+  "kb": 17.7
+ },
+ {
+  "id": "crate_blue",
+  "cat": "env",
+  "tris": 156,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/crate_blue.glb",
+  "kb": 17.7
+ },
+ {
+  "id": "crate_brown",
+  "cat": "env",
+  "tris": 156,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/crate_brown.glb",
+  "kb": 17.7
+ },
+ {
+  "id": "chest_gold",
+  "cat": "env",
+  "tris": 92,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/chest_gold.glb",
+  "kb": 12
+ },
+ {
+  "id": "tree_pine",
+  "cat": "env",
+  "tris": 80,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/tree_pine.glb",
+  "kb": 9.7
+ },
+ {
+  "id": "tree_round",
+  "cat": "env",
+  "tris": 104,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/tree_round.glb",
+  "kb": 12.2
+ },
+ {
+  "id": "tree_small",
+  "cat": "env",
+  "tris": 104,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/tree_small.glb",
+  "kb": 12.3
+ },
+ {
+  "id": "rock_grey_l",
+  "cat": "env",
+  "tris": 80,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/rock_grey_l.glb",
+  "kb": 9.8
+ },
+ {
+  "id": "rock_grey_m",
+  "cat": "env",
+  "tris": 36,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/rock_grey_m.glb",
+  "kb": 5.1
+ },
+ {
+  "id": "rock_brown_l",
+  "cat": "env",
+  "tris": 80,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/rock_brown_l.glb",
+  "kb": 9.8
+ },
+ {
+  "id": "rock_brown_s",
+  "cat": "env",
+  "tris": 36,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/rock_brown_s.glb",
+  "kb": 5.1
+ },
+ {
+  "id": "crystal_cluster",
+  "cat": "env",
+  "tris": 216,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/crystal_cluster.glb",
+  "kb": 26.3
+ },
+ {
+  "id": "lamp_post",
+  "cat": "env",
+  "tris": 96,
+  "bones": [
+   "root"
+  ],
+  "anims": [],
+  "meta": {},
+  "file": "env/lamp_post.glb",
+  "kb": 12.4
+ }
+]
