@@ -17,8 +17,8 @@ const clamp=(v,a,b)=>v<a?a:v>b?b:v;const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y)
 
 // ---------- assets ----------
 const A={};let loadDone=0,loadTotal=0,loadErr=null;
-function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('image failed: '+src));i.src=src+'?v=6.1';});}
-async function loadAtlas(key,path,mask){loadTotal++;const [j,img]=await Promise.all([fetch(path+'.json?v=6.1').then(r=>{if(!r.ok)throw new Error('json failed: '+path);return r.json();}),loadImg(path+'.png')]);
+function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('image failed: '+src));i.src=src+'?v=6.2';});}
+async function loadAtlas(key,path,mask){loadTotal++;const [j,img]=await Promise.all([fetch(path+'.json?v=6.2').then(r=>{if(!r.ok)throw new Error('json failed: '+path);return r.json();}),loadImg(path+'.png')]);
  const a={fr:j.frames,meta:j.meta,img};if(mask)a.mask=await loadImg(path+'_mask.png');A[key]=a;loadDone++;}
 const RACES=['human','robot','grey'];
 const CLS_KEYS=['assault','heavy','sniper','scout','tech','leader','radio'];
@@ -546,7 +546,7 @@ document.addEventListener('contextmenu',e=>e.preventDefault());
 function tap(px,py){if(G.screen==='load'){if(loadErr){loadErr=null;boot();}return;}if(resetArm>0)resetArm--;const dx=px/US,dy=py/US;
  for(let i=BTN.length-1;i>=0;i--){const b=BTN[i];if(dx>=b.x&&dx<=b.x+b.w&&dy>=b.y&&dy<=b.y+b.h){b.fn(dx,dy);return;}}
  if(G.screen!=='play'||G.map)return;if(G.menu){G.menu=false;return;}worldTap(px,py);}
-function unitAtScreen(px,py){let best=null;for(const u of G.units){if(!u.alive)continue;if(u.side==='e'&&!enemyVisible(u)&&!u.freed)continue;const s=w2s(u.x,u.y);const h=(u.boss?110:62)*G.Z,w=(u.boss?40:16)*G.Z;
+function unitAtScreen(px,py){let best=null;for(const u of G.units){if(!u.alive)continue;if(u.side==='e'&&!enemyVisible(u)&&!u.freed)continue;const s=w2s(u.x,u.y);const h=(u.boss?110:50)*G.Z,w=(u.boss?40:14)*G.Z;
  if(px>=s.x-w&&px<=s.x+w&&py>=s.y-h&&py<=s.y+6*G.Z){if(!best||s.y>best.s.y)best={u,s};}}return best&&best.u;}
 function worldTap(px,py){const u=G.sel;const t=s2tile(px,py);const hit=unitAtScreen(px,py);if(G.busy)return;
  if(G.mode==='tb'&&G.side!=='p')return;
