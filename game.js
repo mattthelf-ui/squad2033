@@ -17,8 +17,8 @@ const clamp=(v,a,b)=>v<a?a:v>b?b:v;const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y)
 
 // ---------- assets ----------
 const A={};let loadDone=0,loadTotal=0,loadErr=null;
-function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('image failed: '+src));i.src=src+'?v=6';});}
-async function loadAtlas(key,path,mask){loadTotal++;const [j,img]=await Promise.all([fetch(path+'.json?v=6').then(r=>{if(!r.ok)throw new Error('json failed: '+path);return r.json();}),loadImg(path+'.png')]);
+function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('image failed: '+src));i.src=src+'?v=6.1';});}
+async function loadAtlas(key,path,mask){loadTotal++;const [j,img]=await Promise.all([fetch(path+'.json?v=6.1').then(r=>{if(!r.ok)throw new Error('json failed: '+path);return r.json();}),loadImg(path+'.png')]);
  const a={fr:j.frames,meta:j.meta,img};if(mask)a.mask=await loadImg(path+'_mask.png');A[key]=a;loadDone++;}
 const RACES=['human','robot','grey'];
 const CLS_KEYS=['assault','heavy','sniper','scout','tech','leader','radio'];
@@ -178,7 +178,7 @@ function setupMission(sel){seed=(Date.now()&0xffff)^0x5a5a;G={screen:'play',mode
  E('reptile_slave',15,22,1,{patrol:[{x:15,y:22},{x:16,y:30}]});E('reptile_slave',4,22,1,{patrol:[{x:4,y:22},{x:13,y:21}]});
  E('nordic_sentinel',27,16,2,{face:Math.atan2(1,1)});E('nordic_commander',29,11,2);E('collab_trooper',25,10,2);
  E('reptile_slave',22,10,2,{patrol:[{x:22,y:9},{x:23,y:18}]});E('reptile_slave',33,15,2,{patrol:[{x:34,y:15},{x:30,y:18}]});
- E('collab_trooper',30,26,3,{patrol:[{x:30,y:24},{x:24,y:28}]});
+ E('collab_trooper',26,22,3,{patrol:[{x:26,y:22},{x:21,y:27}]});
  E('sovereign',5,5,4);E('sovereign_guard',6,9,4);E('sovereign_guard',9,6,4);
  G.sel=G.units[0];G.camX=wpx(G.sel.x,G.sel.y);G.camY=wpy(G.sel.x,G.sel.y)-30;computeVis();
  msg('INSERTION. SCOUT THE AO — KILL THE SOVEREIGN (NORTH COMPOUND).','#8be04a');}
