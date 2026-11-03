@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
-const VERSION='squad2033 v4';
+const VERSION='squad2033 v5';
 const cv=document.getElementById('c'),ctx=cv.getContext('2d'),glc=document.getElementById('gl');
 var W=0,H=0,DPR=1;let RW=0,RH=0,U=1,TOP=0,BOT=60;
 const probe=document.createElement('div');probe.style.cssText='position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)';document.body.appendChild(probe);

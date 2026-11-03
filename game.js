@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
-const VERSION='squad2033 v4';
+const VERSION='squad2033 v5';
 const cv=document.getElementById('c'),ctx=cv.getContext('2d'),glc=document.getElementById('gl');
 var W=0,H=0,DPR=1;let RW=0,RH=0,U=1,TOP=0,BOT=60;
 const probe=document.createElement('div');probe.style.cssText='position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)';document.body.appendChild(probe);
@@ -80,7 +80,8 @@ scene.add(new THREE.AmbientLight('#ffffff',1.1));
 const rimDone=new WeakSet();function addRim(m){if(!m||rimDone.has(m))return;rimDone.add(m);m.onBeforeCompile=sh=>{sh.fragmentShader=sh.fragmentShader.replace('#include <dithering_fragment>','#include <dithering_fragment>\n float fr=pow(1.0-clamp(dot(normalize(vViewPosition),normal),0.0,1.0),3.0); gl_FragColor.rgb+=vec3(0.75,0.85,1.0)*fr*0.3;');};m.customProgramCacheKey=()=>'rim';}
 const cam=new THREE.OrthographicCamera(-12,12,12,-12,.1,300);const PITCH=55*Math.PI/180;let VIEW_W=24;// 12 tiles across
 const camT=new THREE.Vector3();
-function fitCam(){const asp=RW/Math.max(1,RH);VIEW_W=asp<1?24:Math.min(32,24*asp);const hw=VIEW_W/2,hh=hw/asp;cam.left=-hw;cam.right=hw;cam.top=hh;cam.bottom=-hh;cam.updateProjectionMatrix();}
+let camWide=false;// setup uses the wider v4 view (12 tiles) so you can see where to place soldiers; battle is zoomed to 8 tiles
+function fitCam(){const asp=RW/Math.max(1,RH);const base=camWide?24:16;VIEW_W=asp<1?base:Math.min(base*4/3,base*asp);const hw=VIEW_W/2,hh=hw/asp;cam.left=-hw;cam.right=hw;cam.top=hh;cam.bottom=-hh;cam.updateProjectionMatrix();}
 function placeCam(tx,tz){camT.set(tx,0,tz);const D=60;cam.position.set(tx,D*Math.sin(PITCH),tz+D*Math.cos(PITCH));cam.lookAt(camT);}
 const u2X=x=>x/M2U-40,u2Z=y=>y/M2U-40;
 // ground: 40x40 tiles, vertex coloured, one draw call
@@ -357,6 +358,7 @@ function sync3D(dt){const show=scene_==='mission'&&G;
  sightMesh.count=k;sightMesh.instanceMatrix.needsUpdate=true;
  selRing.visible=setup;if(setup){const a=G.allies[G.sel];selRing.position.set(u2X(a.x),a.h+.04,u2Z(a.y));}
  zoneMesh.visible=setup;if(setup){zoneMesh.scale.set(72,1,22);zoneMesh.position.set(0,.05,u2Z(32.5*TILE));}
+ if(camWide!==setup){camWide=setup;fitCam();}
  placeCam(u2X(G.cam.x),u2Z(G.cam.y));}
 // ---------- menu showroom (3D portraits) ----------
 const show=new THREE.Scene();show.add(new THREE.HemisphereLight('#8FB0FF','#9A8466',1.9));{const k=new THREE.DirectionalLight('#FFE2BC',3);k.position.set(3,6,8);show.add(k);const r=new THREE.DirectionalLight('#9FC4FF',1.6);r.position.set(-6,4,-6);show.add(r);}show.add(new THREE.AmbientLight('#fff',1.1));

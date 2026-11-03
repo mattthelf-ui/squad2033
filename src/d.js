@@ -97,4 +97,5 @@ function sync3D(dt){const show=scene_==='mission'&&G;
  sightMesh.count=k;sightMesh.instanceMatrix.needsUpdate=true;
  selRing.visible=setup;if(setup){const a=G.allies[G.sel];selRing.position.set(u2X(a.x),a.h+.04,u2Z(a.y));}
  zoneMesh.visible=setup;if(setup){zoneMesh.scale.set(72,1,22);zoneMesh.position.set(0,.05,u2Z(32.5*TILE));}
+ if(camWide!==setup){camWide=setup;fitCam();}
  placeCam(u2X(G.cam.x),u2Z(G.cam.y));}
