@@ -1,6 +1,6 @@
 'use strict';
 // SQUAD 2033 v6 — 2D isometric tactics (JA2 x Ghost Recon). Plain canvas 2D.
-const VERSION='squad2033 v6';
+const VERSION='squad2033 v6.3';
 const cv=document.getElementById('c'),ctx=cv.getContext('2d');
 let W=384,H=854,DPR=1,TOP=0,BOT=60,US=1,DW=384,DH=854;
 const probe=document.createElement('div');probe.style.cssText='position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)';document.body.appendChild(probe);
@@ -17,8 +17,8 @@ const clamp=(v,a,b)=>v<a?a:v>b?b:v;const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y)
 
 // ---------- assets ----------
 const A={};let loadDone=0,loadTotal=0,loadErr=null;
-function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('image failed: '+src));i.src=src+'?v=6.2';});}
-async function loadAtlas(key,path,mask){loadTotal++;const [j,img]=await Promise.all([fetch(path+'.json?v=6.2').then(r=>{if(!r.ok)throw new Error('json failed: '+path);return r.json();}),loadImg(path+'.png')]);
+function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('image failed: '+src));i.src=src+'?v=6.3';});}
+async function loadAtlas(key,path,mask){loadTotal++;const [j,img]=await Promise.all([fetch(path+'.json?v=6.3').then(r=>{if(!r.ok)throw new Error('json failed: '+path);return r.json();}),loadImg(path+'.png')]);
  const a={fr:j.frames,meta:j.meta,img};if(mask)a.mask=await loadImg(path+'_mask.png');A[key]=a;loadDone++;}
 const RACES=['human','robot','grey'];
 const CLS_KEYS=['assault','heavy','sniper','scout','tech','leader','radio'];
@@ -382,6 +382,18 @@ function rtUpdate(dt){G.ctT=(G.ctT||0)-dt;G.rtT=(G.rtT||0)+dt;G.flT=(G.flT||0)-d
  for(const s of G.strikes.slice()){s.t-=dt;if(s.t<=0){G.strikes.splice(G.strikes.indexOf(s),1);explode(s.x,s.y,2.5,4,null).then(()=>checkContact());}}
  if(G.rtT>=10){G.rtT=0;tickRound();}}
 
+
+// reachable tiles for turn-based (same step rules + AP costs as moveAlong)
+function reachMap(u){const sx=Math.round(u.tx),sy=Math.round(u.ty);const cost=new Float32Array(N*N).fill(1e9),from=new Int32Array(N*N).fill(-1);const occ=new Set();for(const o of G.units)if(o!==u&&o.alive)occ.add(ix(Math.round(o.tx),Math.round(o.ty)));
+ const base=CL[u.cls].move[STI[u.stance]];cost[ix(sx,sy)]=0;const open=[ix(sx,sy)];
+ while(open.length){let bi=0;for(let i=1;i<open.length;i++)if(cost[open[i]]<cost[open[bi]])bi=i;const k=open.splice(bi,1)[0];const x=k%N,y=(k/N)|0;
+  for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++){if(!dx&&!dy)continue;const nx=x+dx,ny=y+dy;if(!canStep(x,y,nx,ny))continue;const nk=ix(nx,ny);if(occ.has(nk))continue;const e=edge(x,y,nx,ny);
+   const c=cost[k]+base+(e&&e.st==='door_closed'?2:0)+(dx&&dy?.001:0);if(c>u.ap+.01||c>=cost[nk])continue;cost[nk]=c;from[nk]=k;open.push(nk);}}
+ return{cost,from,sx,sy};}
+function getReach(u){const key=G.units.indexOf(u)+'|'+u.tx+','+u.ty+'|'+u.ap+'|'+u.stance+'|'+G.units.map(o=>o.alive?o.tx+','+o.ty:'x').join(';');const now=performance.now();
+ if(!G.reach||G.reach.key!==key||now-G.reach.t>400){G.reach=Object.assign(reachMap(u),{key,t:now});}return G.reach;}
+function reachPath(r,x,y){let k=ix(x,y);if(r.cost[k]>=1e9||(x===r.sx&&y===r.sy))return null;const p=[];while(k!==ix(r.sx,r.sy)){p.unshift({x:k%N,y:(k/N)|0});k=r.from[k];}return p;}
+
 // ---------- update ----------
 function animInfo(u,n){return A[u.atlas].meta.animation_info[n];}
 function update(dt){if(G.screen!=='play'&&G.screen!=='ending')return;G.t+=dt;
@@ -416,7 +428,10 @@ function drawWorld(){const Z=G.Z;ctx.setTransform(DPR*Z,0,0,DPR*Z,DPR*(vcx()-G.c
  const on=(x,y)=>{const a=wpx(x,y),b=wpy(x,y);return a>x0&&a<x1&&b>y0&&b<y1;};
  for(let x=0;x<N;x++)for(let y=0;y<N;y++){if(!on(x,y))continue;const k=ix(x,y);if(!M.vis[k]){ctx.fillStyle=M.seen[k]?'rgba(10,12,16,.42)':'rgba(10,12,16,.72)';diamond(wpx(x,y),wpy(x,y),1);ctx.fill();}}
  for(const [k,c] of M.clay){ctx.fillStyle='#e0703a';ctx.fillRect(wpx(c.x,c.y)-3,wpy(c.x,c.y)-2,6,4);}
- if(G.sel&&G.mode==='tb'&&G.side==='p'&&!G.busy){const s=G.sel;}
+ if(G.sel&&G.sel.alive&&!G.sel.down&&G.mode==='tb'&&G.side==='p'&&!G.busy&&!G.pending){const s=G.sel,r=getReach(s),keep=s.ap-snapCost(s);ctx.lineWidth=1;
+  for(let x=0;x<N;x++)for(let y=0;y<N;y++){if(!on(x,y))continue;const c=r.cost[ix(x,y)];if(c>=1e9||(x===r.sx&&y===r.sy))continue;const ok=Math.round(c)<=keep;
+   diamond(wpx(x,y),wpy(x,y),.92);ctx.fillStyle=ok?'rgba(63,200,224,.30)':'rgba(232,192,64,.20)';ctx.fill();ctx.strokeStyle=ok?'rgba(120,230,255,.55)':'rgba(232,192,64,.35)';ctx.stroke();}}
+ if(G.mode==='rt'&&G.sel&&G.sel.moving&&G.sel.dest){const d=G.sel.dest;diamond(wpx(d.x,d.y),wpy(d.x,d.y),.92);ctx.fillStyle='rgba(230,226,212,.22)';ctx.fill();ctx.strokeStyle='rgba(230,226,212,.6)';ctx.lineWidth=1;ctx.stroke();}
  // planned path / preview
  const hud=A.hud;if(G.preview){for(const n of G.preview.path)drawFrame(hud,'move/dot',wpx(n.x,n.y),wpy(n.x,n.y));const l=G.preview.path[G.preview.path.length-1];drawFrame(hud,'move/target_chevron',wpx(l.x,l.y),wpy(l.x,l.y));
   text(G.preview.cost+' AP',wpx(l.x,l.y),wpy(l.x,l.y)-30,G.preview.cost>G.sel.ap?'#ff5a4a':'#e8c040',14,'c');}
@@ -556,7 +571,7 @@ function worldTap(px,py){const u=G.sel;const t=s2tile(px,py);const hit=unitAtScr
  if(!u||!u.alive||u.down||!inb(t.x,t.y))return;
  if(G.mode==='rt'){const p=findPath(u,t.x,t.y);if(!p){msg("CAN'T MOVE THERE");return;}u.wps=[];u.wpGo=false;u.dest={x:t.x,y:t.y};moveAlong(u,p);return;}
  G.target=null;if(G.preview&&G.preview.x===t.x&&G.preview.y===t.y){const pv=G.preview;G.preview=null;doAsync(async()=>{G.busy=true;u.ow=false;try{await moveAlong(u,pv.path);}finally{G.busy=false;}});return;}
- const p=findPath(u,t.x,t.y);if(!p){msg("CAN'T MOVE THERE");G.preview=null;return;}let cost=0,cx=u.tx,cy=u.ty;for(const n of p){const e=edge(cx,cy,n.x,n.y);cost+=CL[u.cls].move[STI[u.stance]]+(e&&e.st==='door_closed'?2:0);cx=n.x;cy=n.y;}
+ const p=reachPath(getReach(u),t.x,t.y)||findPath(u,t.x,t.y);if(!p){msg("CAN'T MOVE THERE");G.preview=null;return;}let cost=0,cx=u.tx,cy=u.ty;for(const n of p){const e=edge(cx,cy,n.x,n.y);cost+=CL[u.cls].move[STI[u.stance]]+(e&&e.st==='door_closed'?2:0);cx=n.x;cy=n.y;}
  G.preview={x:t.x,y:t.y,path:p,cost};}
 
 // ---------- boot / loop ----------
@@ -569,4 +584,4 @@ window.SQ={get G(){return G;},get R(){return R;},get BTN(){return BTN;},US:()=>U
  btn(id){const b=BTN.find(b=>b.id===id||b.id.startsWith(id));return b?{x:(b.x+b.w/2)*US,y:(b.y+b.h/2)*US}:null;},
  tile(x,y){return w2s(x,y);},unit(u){const s=w2s(u.x,u.y);return{x:s.x,y:s.y-26*G.Z};},
  setSpeed(s){SPD=s;},force(p,e){FORCE.p=p;FORCE.e=e;},sleep};
-SQ.api={startTB,abTarget,damage,findPath,pathAdj,moveAlong,attack,endPlayerTurn,liveP,hostiles,setupMission,useAbility,canShoot,sees,enemyVisible,reload:reloadCmd,dist};
+SQ.api={getReach,startTB,abTarget,damage,findPath,pathAdj,moveAlong,attack,endPlayerTurn,liveP,hostiles,setupMission,useAbility,canShoot,sees,enemyVisible,reload:reloadCmd,dist};
