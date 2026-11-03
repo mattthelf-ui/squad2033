@@ -1,0 +1,789 @@
+{
+ "frames": {
+  "wall/corner/inner/intact": {
+   "frame": {
+    "x": 2,
+    "y": 2,
+    "w": 64,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/corner/inner/cracked": {
+   "frame": {
+    "x": 68,
+    "y": 2,
+    "w": 64,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/corner/outer/intact": {
+   "frame": {
+    "x": 134,
+    "y": 2,
+    "w": 64,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 12,
+    "w": 64,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/corner/outer/cracked": {
+   "frame": {
+    "x": 200,
+    "y": 2,
+    "w": 64,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 12,
+    "w": 64,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/nw/door_blown": {
+   "frame": {
+    "x": 266,
+    "y": 2,
+    "w": 43,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 43,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/ne/breached": {
+   "frame": {
+    "x": 2,
+    "y": 72,
+    "w": 40,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 24,
+    "y": 0,
+    "w": 40,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/nw/intact": {
+   "frame": {
+    "x": 44,
+    "y": 72,
+    "w": 39,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 39,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/nw/cracked": {
+   "frame": {
+    "x": 85,
+    "y": 72,
+    "w": 39,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 39,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/nw/breached": {
+   "frame": {
+    "x": 126,
+    "y": 72,
+    "w": 39,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 39,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/nw/door_closed": {
+   "frame": {
+    "x": 167,
+    "y": 72,
+    "w": 39,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 39,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/nw/door_open": {
+   "frame": {
+    "x": 208,
+    "y": 72,
+    "w": 39,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 39,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/sw/intact": {
+   "frame": {
+    "x": 249,
+    "y": 72,
+    "w": 39,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 12,
+    "w": 39,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/ne/intact": {
+   "frame": {
+    "x": 2,
+    "y": 142,
+    "w": 38,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 26,
+    "y": 0,
+    "w": 38,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/ne/cracked": {
+   "frame": {
+    "x": 42,
+    "y": 142,
+    "w": 38,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 26,
+    "y": 0,
+    "w": 38,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/ne/door_closed": {
+   "frame": {
+    "x": 82,
+    "y": 142,
+    "w": 38,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 26,
+    "y": 0,
+    "w": 38,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/ne/door_open": {
+   "frame": {
+    "x": 122,
+    "y": 142,
+    "w": 38,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 26,
+    "y": 0,
+    "w": 38,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/ne/door_blown": {
+   "frame": {
+    "x": 162,
+    "y": 142,
+    "w": 38,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 26,
+    "y": 0,
+    "w": 38,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/se/intact": {
+   "frame": {
+    "x": 202,
+    "y": 142,
+    "w": 38,
+    "h": 68
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 26,
+    "y": 12,
+    "w": 38,
+    "h": 68
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/nw/rubble": {
+   "frame": {
+    "x": 242,
+    "y": 142,
+    "w": 42,
+    "h": 29
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 39,
+    "w": 42,
+    "h": 29
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "wall/ne/rubble": {
+   "frame": {
+    "x": 2,
+    "y": 212,
+    "w": 42,
+    "h": 29
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 22,
+    "y": 39,
+    "w": 42,
+    "h": 29
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  }
+ },
+ "meta": {
+  "app": "squad2033-ja2 pixel generator (TexturePacker JSON hash compatible)",
+  "version": "1.0",
+  "image": "walls.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 311,
+   "h": 243
+  },
+  "scale": "1",
+  "padding": 2,
+  "smartupdate": "",
+  "tile": {
+   "w": 64,
+   "h": 80,
+   "pivot": [
+    32,
+    64
+   ],
+   "wall_height": 48,
+   "note": "Wall tiles are 64x80: ground diamond occupies rows 48-79, wall rises 48px (1.5 tile-heights, ~0.75 soldier height). Pivot = diamond centre (32,64). Walls sit on the named tile edge; draw after floor, depth-sort by tile (i+j) then edge (nw/ne before units on that tile, sw/se after)."
+  },
+  "props": {
+   "wall/nw/intact": {
+    "type": "wall",
+    "edge": "nw",
+    "damage_stage": 0,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/nw/cracked": {
+    "type": "wall",
+    "edge": "nw",
+    "damage_stage": 1,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/nw/breached": {
+    "type": "wall",
+    "edge": "nw",
+    "damage_stage": 2,
+    "cover": "half",
+    "blocks_los": false,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/nw/rubble": {
+    "type": "wall",
+    "edge": "nw",
+    "damage_stage": 3,
+    "cover": "half",
+    "blocks_los": false,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/nw/door_closed": {
+    "type": "door",
+    "edge": "nw",
+    "state": "closed",
+    "cover": "full",
+    "blocks_los": true,
+    "passable": false,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/nw/door_open": {
+    "type": "door",
+    "edge": "nw",
+    "state": "open",
+    "cover": "none",
+    "blocks_los": false,
+    "passable": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/nw/door_blown": {
+    "type": "door",
+    "edge": "nw",
+    "state": "blown",
+    "cover": "none",
+    "blocks_los": false,
+    "passable": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/ne/intact": {
+    "type": "wall",
+    "edge": "ne",
+    "damage_stage": 0,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/ne/cracked": {
+    "type": "wall",
+    "edge": "ne",
+    "damage_stage": 1,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/ne/breached": {
+    "type": "wall",
+    "edge": "ne",
+    "damage_stage": 2,
+    "cover": "half",
+    "blocks_los": false,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/ne/rubble": {
+    "type": "wall",
+    "edge": "ne",
+    "damage_stage": 3,
+    "cover": "half",
+    "blocks_los": false,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/ne/door_closed": {
+    "type": "door",
+    "edge": "ne",
+    "state": "closed",
+    "cover": "full",
+    "blocks_los": true,
+    "passable": false,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/ne/door_open": {
+    "type": "door",
+    "edge": "ne",
+    "state": "open",
+    "cover": "none",
+    "blocks_los": false,
+    "passable": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/ne/door_blown": {
+    "type": "door",
+    "edge": "ne",
+    "state": "blown",
+    "cover": "none",
+    "blocks_los": false,
+    "passable": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/corner/inner/intact": {
+    "type": "corner",
+    "edges": [
+     "nw",
+     "ne"
+    ],
+    "damage_stage": 0,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/corner/inner/cracked": {
+    "type": "corner",
+    "edges": [
+     "nw",
+     "ne"
+    ],
+    "damage_stage": 1,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/corner/outer/intact": {
+    "type": "corner",
+    "edges": [
+     "sw",
+     "se"
+    ],
+    "damage_stage": 0,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/corner/outer/cracked": {
+    "type": "corner",
+    "edges": [
+     "sw",
+     "se"
+    ],
+    "damage_stage": 1,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "wall/sw/intact": {
+    "type": "wall",
+    "edge": "sw",
+    "damage_stage": 0,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "note": "front-edge variant; same as nw/ne placed on neighbour tile but with outer face"
+   },
+   "wall/se/intact": {
+    "type": "wall",
+    "edge": "se",
+    "damage_stage": 0,
+    "cover": "full",
+    "blocks_los": true,
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "note": "front-edge variant; same as nw/ne placed on neighbour tile but with outer face"
+   }
+  }
+ }
+}

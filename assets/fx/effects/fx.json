@@ -1,0 +1,346 @@
+{
+ "frames": {
+  "leader_aura/01": {
+   "frame": {
+    "x": 2,
+    "y": 2,
+    "w": 47,
+    "h": 23
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 3,
+    "y": 3,
+    "w": 47,
+    "h": 23
+   },
+   "sourceSize": {
+    "w": 52,
+    "h": 28
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "leader_aura/03": {
+   "frame": {
+    "x": 51,
+    "y": 2,
+    "w": 47,
+    "h": 23
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 3,
+    "y": 3,
+    "w": 47,
+    "h": 23
+   },
+   "sourceSize": {
+    "w": 52,
+    "h": 28
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "leader_aura/00": {
+   "frame": {
+    "x": 100,
+    "y": 2,
+    "w": 45,
+    "h": 23
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 4,
+    "y": 3,
+    "w": 45,
+    "h": 23
+   },
+   "sourceSize": {
+    "w": 52,
+    "h": 28
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "leader_aura/02": {
+   "frame": {
+    "x": 147,
+    "y": 2,
+    "w": 45,
+    "h": 23
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 4,
+    "y": 3,
+    "w": 45,
+    "h": 23
+   },
+   "sourceSize": {
+    "w": 52,
+    "h": 28
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "explosion/04": {
+   "frame": {
+    "x": 194,
+    "y": 2,
+    "w": 23,
+    "h": 23
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 5,
+    "y": 5,
+    "w": 23,
+    "h": 23
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.75
+   }
+  },
+  "explosion/03": {
+   "frame": {
+    "x": 219,
+    "y": 2,
+    "w": 19,
+    "h": 19
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 7,
+    "y": 7,
+    "w": 19,
+    "h": 19
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.75
+   }
+  },
+  "explosion/02": {
+   "frame": {
+    "x": 2,
+    "y": 27,
+    "w": 15,
+    "h": 15
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 9,
+    "y": 9,
+    "w": 15,
+    "h": 15
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.75
+   }
+  },
+  "explosion/01": {
+   "frame": {
+    "x": 19,
+    "y": 27,
+    "w": 11,
+    "h": 11
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 11,
+    "y": 11,
+    "w": 11,
+    "h": 11
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.75
+   }
+  },
+  "muzzle_smoke/02": {
+   "frame": {
+    "x": 32,
+    "y": 27,
+    "w": 9,
+    "h": 9
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 2,
+    "y": 2,
+    "w": 9,
+    "h": 9
+   },
+   "sourceSize": {
+    "w": 12,
+    "h": 12
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "explosion/00": {
+   "frame": {
+    "x": 43,
+    "y": 27,
+    "w": 7,
+    "h": 7
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 13,
+    "y": 13,
+    "w": 7,
+    "h": 7
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.75
+   }
+  },
+  "muzzle_smoke/01": {
+   "frame": {
+    "x": 52,
+    "y": 27,
+    "w": 7,
+    "h": 7
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 3,
+    "y": 3,
+    "w": 7,
+    "h": 7
+   },
+   "sourceSize": {
+    "w": 12,
+    "h": 12
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "muzzle_smoke/00": {
+   "frame": {
+    "x": 61,
+    "y": 27,
+    "w": 5,
+    "h": 5
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 4,
+    "y": 4,
+    "w": 5,
+    "h": 5
+   },
+   "sourceSize": {
+    "w": 12,
+    "h": 12
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "grenade": {
+   "frame": {
+    "x": 68,
+    "y": 27,
+    "w": 5,
+    "h": 5
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 5,
+    "h": 5
+   },
+   "sourceSize": {
+    "w": 5,
+    "h": 5
+   },
+   "pivot": {
+    "x": 0.4,
+    "y": 0.4
+   }
+  }
+ },
+ "meta": {
+  "app": "squad2033-ja2 pixel generator (TexturePacker JSON hash compatible)",
+  "version": "1.0",
+  "image": "fx.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 240,
+   "h": 44
+  },
+  "scale": "1",
+  "padding": 2,
+  "smartupdate": "",
+  "animation_info": {
+   "leader_aura": {
+    "frames": 4,
+    "fps": 4,
+    "loop": true
+   },
+   "explosion": {
+    "frames": 5,
+    "fps": 14,
+    "loop": false
+   },
+   "muzzle_smoke": {
+    "frames": 3,
+    "fps": 10,
+    "loop": false
+   }
+  }
+ }
+}

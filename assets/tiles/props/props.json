@@ -1,0 +1,360 @@
+{
+ "frames": {
+  "prop/crate_stack": {
+   "frame": {
+    "x": 2,
+    "y": 2,
+    "w": 47,
+    "h": 61
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 9,
+    "y": 16,
+    "w": 47,
+    "h": 61
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "prop/sandbags_2x1_a": {
+   "frame": {
+    "x": 51,
+    "y": 2,
+    "w": 73,
+    "h": 47
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 13,
+    "y": 41,
+    "w": 73,
+    "h": 47
+   },
+   "sourceSize": {
+    "w": 96,
+    "h": 96
+   },
+   "pivot": {
+    "x": 0.333333,
+    "y": 0.666667
+   }
+  },
+  "prop/crate": {
+   "frame": {
+    "x": 126,
+    "y": 2,
+    "w": 41,
+    "h": 41
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 12,
+    "y": 35,
+    "w": 41,
+    "h": 41
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "prop/barrier_a": {
+   "frame": {
+    "x": 169,
+    "y": 2,
+    "w": 39,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 13,
+    "y": 39,
+    "w": 39,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "prop/barrier_b": {
+   "frame": {
+    "x": 210,
+    "y": 2,
+    "w": 39,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 13,
+    "y": 39,
+    "w": 39,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "prop/rubble_pile": {
+   "frame": {
+    "x": 2,
+    "y": 65,
+    "w": 53,
+    "h": 34
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 39,
+    "w": 53,
+    "h": 34
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "prop/sandbags_a": {
+   "frame": {
+    "x": 57,
+    "y": 65,
+    "w": 45,
+    "h": 33
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 10,
+    "y": 40,
+    "w": 45,
+    "h": 33
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "prop/sandbags_b": {
+   "frame": {
+    "x": 104,
+    "y": 65,
+    "w": 45,
+    "h": 33
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 9,
+    "y": 40,
+    "w": 45,
+    "h": 33
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "prop/rocks": {
+   "frame": {
+    "x": 151,
+    "y": 65,
+    "w": 34,
+    "h": 30
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 13,
+    "y": 42,
+    "w": 34,
+    "h": 30
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  },
+  "prop/barrel": {
+   "frame": {
+    "x": 187,
+    "y": 65,
+    "w": 17,
+    "h": 29
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 24,
+    "y": 40,
+    "w": 17,
+    "h": 29
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 80
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.8
+   }
+  }
+ },
+ "meta": {
+  "app": "squad2033-ja2 pixel generator (TexturePacker JSON hash compatible)",
+  "version": "1.0",
+  "image": "props.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 251,
+   "h": 101
+  },
+  "scale": "1",
+  "padding": 2,
+  "smartupdate": "",
+  "tile": {
+   "pivot_note": "props share the wall canvas convention: 64x80 (2x1: 96x96), pivot = centre of first footprint tile diamond",
+   "wall_height": 48
+  },
+  "props": {
+   "prop/sandbags_a": {
+    "cover": "half",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "axis": "a (runs NW->SE, screen down-right)"
+   },
+   "prop/sandbags_b": {
+    "cover": "half",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "axis": "b (runs NE->SW, screen down-left)"
+   },
+   "prop/sandbags_2x1_a": {
+    "cover": "half",
+    "footprint": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      0
+     ]
+    ]
+   },
+   "prop/crate": {
+    "cover": "half",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "prop/crate_stack": {
+    "cover": "full",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "prop/barrel": {
+    "cover": "half",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "destructible": true
+   },
+   "prop/barrier_a": {
+    "cover": "half",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "prop/barrier_b": {
+    "cover": "half",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "prop/rubble_pile": {
+    "cover": "half",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "prop/rocks": {
+    "cover": "half",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  }
+ }
+}

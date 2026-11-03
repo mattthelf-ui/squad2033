@@ -1,0 +1,236 @@
+{
+ "frames": {
+  "floor/grass": {
+   "frame": {
+    "x": 2,
+    "y": 2,
+    "w": 64,
+    "h": 31
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 31
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "floor/dirt": {
+   "frame": {
+    "x": 68,
+    "y": 2,
+    "w": 64,
+    "h": 31
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 31
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "floor/sand": {
+   "frame": {
+    "x": 134,
+    "y": 2,
+    "w": 64,
+    "h": 31
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 31
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "floor/cobble": {
+   "frame": {
+    "x": 2,
+    "y": 35,
+    "w": 64,
+    "h": 31
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 31
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "floor/mud": {
+   "frame": {
+    "x": 68,
+    "y": 35,
+    "w": 64,
+    "h": 31
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 31
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "floor/jungle_cobble": {
+   "frame": {
+    "x": 134,
+    "y": 35,
+    "w": 64,
+    "h": 31
+   },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 31
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 32
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  }
+ },
+ "meta": {
+  "app": "squad2033-ja2 pixel generator (TexturePacker JSON hash compatible)",
+  "version": "1.0",
+  "image": "floors.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 200,
+   "h": 68
+  },
+  "scale": "1",
+  "padding": 2,
+  "smartupdate": "",
+  "tile": {
+   "w": 64,
+   "h": 32,
+   "pivot": [
+    32,
+    16
+   ],
+   "step": [
+    32,
+    16
+   ],
+   "note": "diamond rows 0-30 filled, row 31 empty; tiles at (i,j) -> screen (ox+(i-j)*32, oy+(i+j)*16) top-left. Exact tiling, no overlap."
+  },
+  "props": {
+   "floor/grass": {
+    "type": "floor",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "walkable": true
+   },
+   "floor/dirt": {
+    "type": "floor",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "walkable": true
+   },
+   "floor/sand": {
+    "type": "floor",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "walkable": true
+   },
+   "floor/cobble": {
+    "type": "floor",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "walkable": true
+   },
+   "floor/mud": {
+    "type": "floor",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "walkable": true
+   },
+   "floor/jungle_cobble": {
+    "type": "floor",
+    "footprint": [
+     [
+      0,
+      0
+     ]
+    ],
+    "walkable": true
+   }
+  }
+ }
+}
